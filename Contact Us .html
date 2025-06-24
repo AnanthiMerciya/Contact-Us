@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Us Today!</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e8ecf1;
+    padding: 30px;
+  }
+  .container {
+    max-width: 500px;
+    margin: auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  }
+  h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #2a3f54;
+  }
+  .form-group {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+  }
+  .form-group label {
+    width: 200px;
+    font-weight: bold;
+    margin-top: 6px;
+    color: #333;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9fbfc; /* light gray background */
+    color: #2a2a2a;
+  }
+  .form-group textarea {
+    resize: vertical;
+  }
+  .radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .radio-options label {
+    font-weight: normal;
+  }
+  .send-btn {
+    background-color: #4a89dc; /* formal blue */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+  }
+  .send-btn:hover {
+    background-color: #357bd8;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h2>Contact Us Today!</h2>
+    <form id="contactForm">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" id="fname" placeholder="First Name">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" id="lname" placeholder="Last Name">
+      </div>
+      <div class="form-group">
+        <label>E-Mail</label>
+        <input type="text" id="email" placeholder="E-Mail Address">
+      </div>
+      <div class="form-group">
+        <label>Phone #</label>
+        <input type="text" id="phone" placeholder="(845)555-1212">
+      </div>
+      <div class="form-group">
+        <label>Address</label>
+        <input type="text" id="address" placeholder="Address">
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <input type="text" id="city" placeholder="City">
+      </div>
+      <div class="form-group">
+        <label>State</label>
+        <select id="state">
+          <option value="">Please select your state</option>
+          <option>California</option>
+          <option>New York</option>
+          <option>Texas</option>
+          <option>Florida</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Zip Code</label>
+        <input type="text" id="zip" placeholder="Zip Code">
+      </div>
+      <div class="form-group">
+        <label>Website or domain name</label>
+        <input type="text" id="website" placeholder="Website or domain name">
+      </div>
+      <div class="form-group">
+        <label>Do you have hosting?</label>
+        <div class="radio-options">
+          <label><input type="radio" name="hosting" id="hostYes"> Yes</label>
+          <label><input type="radio" name="hosting" id="hostNo"> No</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Project Description</label>
+        <textarea id="desc" rows="3" placeholder="Project Description"></textarea>
+      </div>
+
+      <button type="submit" class="send-btn">Send</button>
+    </form>
+  </div>
+  <script>
+    document.getElementById("contactForm").onsubmit = function() {
+      var fname = document.getElementById("fname").value;
+      if (fname == "") {
+        alert("Please enter First Name");
+        return false;
+      }
+      var lname = document.getElementById("lname").value;
+      if (lname == "") {
+        alert("Please enter Last Name");
+        return false;
+      }
+      var email = document.getElementById("email").value;
+      if (email == "") {
+        alert("Please enter Email");
+        return false;
+      }
+      var at = email.indexOf("@");
+      var dot = email.lastIndexOf(".");
+      if (at < 1) {
+        alert("Email must contain @ symbol");
+        return false;
+      }
+      if (dot < at + 2) {
+        alert("Email must contain dot after @");
+        return false;
+      }
+      if (dot + 2 >= email.length) {
+        alert("Email must end properly after dot");
+        return false;
+      }
+      var phone = document.getElementById("phone").value;
+      if (phone == "") {
+        alert("Please enter Phone Number");
+        return false;
+      }
+      if (phone.length != 10) {
+        alert("Phone number must be exactly 10 digits");
+        return false;
+    }
+      var digitsOnly = "0123456789";
+      for (var i = 0; i < phone.length; i++) {
+        var ch = phone.charAt(i);
+        if (digitsOnly.indexOf(ch) == -1) {
+            alert("Phone number must contain only digits");
+            return false;
+        }
+    }
+      var address = document.getElementById("address").value;
+      if (address == "") {
+        alert("Please enter Address");
+        return false;
+      }
+      var city = document.getElementById("city").value;
+      if (city == "") {
+        alert("Please enter City");
+        return false;
+      }
+      var state = document.getElementById("state").value;
+      if (state == "") {
+        alert("Please select State");
+        return false;
+      }
+      var zip = document.getElementById("zip").value;
+      if (zip == "") {
+        alert("Please enter Zip Code");
+        return false;
+      }
+      var website = document.getElementById("website").value;
+      if (website == "") {
+        alert("Please enter Website");
+        return false;
+      }
+      var yes = document.getElementById("hostYes").checked;
+      var no = document.getElementById("hostNo").checked;
+      if (yes == false) {
+        if (no == false) {
+          alert("Please choose Hosting option");
+          return false;
+        }
+      }
+      var desc = document.getElementById("desc").value;
+      if (desc == "") {
+        alert("Please enter Project Description");
+        return false;
+      }
+        alert("Form submitted successfully!");
+      return true;
+    };
+  </script>
+</body>
+</html>
